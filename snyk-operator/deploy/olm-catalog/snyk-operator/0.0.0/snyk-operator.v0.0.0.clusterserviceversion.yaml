@@ -20,7 +20,11 @@ metadata:
             "integrationApi": "",
             "monitorSecrets": "snyk-monitor",
             "scope": "Cluster",
-            "temporaryStorageSize": "50Gi"
+            "temporaryStorageSize": "50Gi",
+            "pvc": {
+              "enabled": false,
+              "name": "snyk-monitor-pvc"
+            }
           }
         }
       ]
@@ -51,6 +55,8 @@ spec:
           - kind: Secret
             name: snyk-monitor
             version: v1
+          # ----- TODO:
+          - kind: PersistentVolumeClaim
         specDescriptors:
           - description: >-
               The name of the secret object that stores the Snyk controller secrets.
@@ -103,6 +109,10 @@ spec:
             path: image.tag
             x-descriptors:
             - 'urn:alm:descriptor:text'
+          - description: >-
+            path: pvc.enabled
+          # --
+          - path: pvc.name
   description: |-
     A Kubernetes Operator for creating and managing Snyk Kubernetes controller instances.
 

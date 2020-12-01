@@ -5,3 +5,7 @@ metadata:
   namespace: snyk-monitor
 spec:
   integrationApi: https://kubernetes-upstream.dev.snyk.io
+  clusterName: My dev clusterName
+  pvc:
+    enabled: true
+    name: snyk-monitor-pvc
